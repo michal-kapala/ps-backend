@@ -65,7 +65,18 @@ def get_posts():
         p['datetime'] = p['datetime'][0]
 
     return jsonify(result), 200
-        
+
+@app.route("/posts", methods=['POST'])
+def add_post():
+    req = request.get_json()
+    Post(post_id=req['post_id'], 
+        author=req['author'], 
+        datetime=req['datetime'],
+        content=req['content'],
+        likes=req['likes'],
+        ad=req['ad']
+    ).save()
+    return "", 201
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
