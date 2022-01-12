@@ -78,6 +78,13 @@ def add_post():
     ).save()
     return "", 201
 
+@app.route("/posts", methods=['POST'])
+def delete_post():
+    param = request.args.get('post_id')
+    post = Post.objects(post_id=param).first()
+    post.delete()
+    return "", 204
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
 
