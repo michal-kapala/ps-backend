@@ -78,7 +78,7 @@ def add_post():
     ).save()
     return "", 201
 
-@app.route("/posts", methods=['POST'])
+@app.route("/posts", methods=['DELETE'])
 def delete_post():
     param = request.args.get('post_id')
     post = Post.objects(post_id=param).first()
